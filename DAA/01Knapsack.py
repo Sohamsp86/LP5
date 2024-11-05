@@ -1,8 +1,10 @@
-def knapsack(values, weights, capacity):
+def knapsack_dp(values, weights, capacity):
     n = len(values)
+    
+    # Initialize the DP table with 0s
     dp = [[0 for _ in range(capacity + 1)] for _ in range(n + 1)]
 
-    # Build the DP table
+    # Populate the DP table
     for i in range(1, n + 1):
         for w in range(1, capacity + 1):
             if weights[i - 1] <= w:
@@ -10,14 +12,38 @@ def knapsack(values, weights, capacity):
             else:
                 dp[i][w] = dp[i - 1][w]
 
-    return dp[n][capacity]
+    # Backtrack to find which items are included in the knapsack
+    total_value = dp[n][capacity]
+    w = capacity
+    items_included = []
+    
+    for i in range(n, 0, -1):
+        if dp[i][w] != dp[i - 1][w]:
+            items_included.append(i - 1)  # Store index (i-1) of the item
+            w -= weights[i - 1]
 
-# Example usage
+    # Display the DP table
+    print("DP Table (Max Value Table):")
+    for row in dp:
+        print(" ".join(f"{x:2}" for x in row))
+
+    # Display the items included and the total value
+    print("Items Included in Knapsack (Item indices starting from 0):", items_included)
+    print("Total Value in Knapsack:", total_value)
+
+# Input
 if __name__ == "__main__":
-    # Define values and weights of items
-    values = [60, 100, 120]
-    weights = [10, 20, 30]
-    knapsack_capacity = 50
+    num_items = int(input("Enter the number of items: "))
+    capacity = int(input("Enter the capacity of the knapsack: "))
+    
+    values = []
+    weights = []
+    
+    for i in range(num_items):
+        weight = int(input(f"Enter the weight of item {i + 1}: "))
+        value = int(input(f"Enter the value of item {i + 1}: "))
+        weights.append(weight)
+        values.append(value)
 
-    max_value = knapsack(values, weights, knapsack_capacity)
-    print(f"Maximum value in knapsack: {max_value}")
+    # Solve knapsack problem using dynamic programming
+    knapsack_dp(values, weights, capacity)
