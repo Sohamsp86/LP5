@@ -98,28 +98,32 @@ int main() {
     auto start = high_resolution_clock::now();
     int seq_sum = sum(n, arr);
     auto end = high_resolution_clock::now();
-    double seq_sum_time = duration<double, nano>(end - start).count();
+    double seq_sum_time = duration_cast<nanoseconds>(end - start).count();
+
     cout << "Sum : " << seq_sum << "\n";
     cout << "TIME TAKEN : " << seq_sum_time << " ns\n\n";
 
     start = high_resolution_clock::now();
     int seq_avg = average(n, arr);
     end = high_resolution_clock::now();
-    double seq_avg_time = duration<double, nano>(end - start).count();
+    double seq_avg_time = duration_cast<nanoseconds>(end - start).count();
+
     cout << "Average : " << seq_avg << "\n";
     cout << "TIME TAKEN : " << seq_avg_time << " ns\n\n";
 
     start = high_resolution_clock::now();
     int seq_max = maximum(n, arr);
     end = high_resolution_clock::now();
-    double seq_max_time = duration<double, nano>(end - start).count();
+    double seq_max_time = duration_cast<nanoseconds>(end - start).count();
+
     cout << "Maximum : " << seq_max << "\n";
     cout << "TIME TAKEN : " << seq_max_time << " ns\n\n";
 
     start = high_resolution_clock::now();
     int seq_min = minimum(n, arr);
     end = high_resolution_clock::now();
-    double seq_min_time = duration<double, nano>(end - start).count();
+    double seq_min_time = duration_cast<nanoseconds>(end - start).count();
+
     cout << "Minimum : " << seq_min << "\n";
     cout << "TIME TAKEN : " << seq_min_time << " ns\n\n";
 
@@ -128,7 +132,8 @@ int main() {
     start = high_resolution_clock::now();
     int par_sum = sum_p(n, arr);
     end = high_resolution_clock::now();
-    double par_sum_time = duration<double, nano>(end - start).count();
+    double par_sum_time = duration_cast<nanoseconds>(end - start).count();
+
     cout << "Sum : " << par_sum << "\n";
     cout << "TIME TAKEN : " << par_sum_time << " ns\n";
     cout << "Speedup Factor: " << seq_sum_time / par_sum_time << "\n\n";
@@ -136,7 +141,8 @@ int main() {
     start = high_resolution_clock::now();
     int par_avg = average_p(n, arr);
     end = high_resolution_clock::now();
-    double par_avg_time = duration<double, nano>(end - start).count();
+    double par_avg_time = duration_cast<nanoseconds>(end - start).count();
+
     cout << "Average : " << par_avg << "\n";
     cout << "TIME TAKEN : " << par_avg_time << " ns\n";
     cout << "Speedup Factor: " << seq_avg_time / par_avg_time << "\n\n";
@@ -144,7 +150,8 @@ int main() {
     start = high_resolution_clock::now();
     int par_max = maximum_p(n, arr);
     end = high_resolution_clock::now();
-    double par_max_time = duration<double, nano>(end - start).count();
+    double par_max_time = duration_cast<nanoseconds>(end - start).count();
+
     cout << "Maximum : " << par_max << "\n";
     cout << "TIME TAKEN : " << par_max_time << " ns\n";
     cout << "Speedup Factor: " << seq_max_time / par_max_time << "\n\n";
@@ -152,7 +159,8 @@ int main() {
     start = high_resolution_clock::now();
     int par_min = minimum_p(n, arr);
     end = high_resolution_clock::now();
-    double par_min_time = duration<double, nano>(end - start).count();
+    double par_min_time = duration_cast<nanoseconds>(end - start).count();
+
     cout << "Minimum : " << par_min << "\n";
     cout << "TIME TAKEN : " << par_min_time << " ns\n";
     cout << "Speedup Factor: " << seq_min_time / par_min_time << "\n\n";
